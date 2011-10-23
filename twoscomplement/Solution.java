@@ -39,6 +39,15 @@ public class Solution {
       range1 = trialInfo.get(2*t-2);
       range2 = trialInfo.get(2*t-1);
 
+      /* The goal of this block of code is to calculate sum of 1-bits in a large range from
+       zero to 2 ^ (some n) or from -(2 ^ (some n)) to -1. The probability rule for combinations
+       without replacements will tell us how many ways you can have x number of bits
+       flipped in an n-bit number. For example, how many ways can you have a population
+       of two bits in a 32-bit number (1 bit used to represent neg/pos)? The answer is
+       31!/(2!(31-2)!, which reduces to 31*30/2 or 930/2 and finally 465. Each of those
+       465 combinations has a bit population of 2. The sum or population is 930 in all
+       possible combinations with a population of 2. For a full solution, we need to calculate
+       for all combinations with population beginning with 1 thru the 31 at most. */ 
       
       //if (range2>(Math.abs(range1)*1000)) {
       //  for(int i = 1; i <= 31; i++) {
@@ -53,6 +62,8 @@ public class Solution {
       //}
 
       // Here we are calculating sums from -x to x-1, because these can be paired, and each pair sums to 32.
+      // For example the binary representation of 0 in 32-bit two's complement has zero 1-bits and the 
+      // representation of -1 has 32 1-bits. The sumb of 1-bits equals 32.
       if ((range1<0) && (range2>=0) && (Math.abs(range1)>=Math.abs(range2+1))) {
         runningTotal = runningTotal + (32 * (range2+1));
         tricky1 = range1;
