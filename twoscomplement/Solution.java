@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.ArrayList;
 public class Solution {
 
-  public int factoril( int num ) {
+  public int fact( int num ) {
     int result = 1;
     for( int i = 1; i <= num; i++) {
       result = i *  result;
@@ -33,24 +33,26 @@ public class Solution {
         System.err.println("Error: " + e.getMessage());
       }
 
-    //loop for number of trials
+    //loop for each pair of trial ranges
     for(int t = 1; t<= trials; t++){
       runningTotal = 0;
       range1 = trialInfo.get(2*t-2);
       range2 = trialInfo.get(2*t-1);
 
-      if (d>(Math.abs(range1)*1000)) {
-        for(int i = 1; i <= 31; i++) {
-          if (range2 < (Math.pow(2, i))) {
-            topDifference = Math.pow(2, i-1);
-            break;
-          }
-        }
-        //section where I need to count how many ways to have one 1, two ones, etc and multiply
+      
+      //if (range2>(Math.abs(range1)*1000)) {
+      //  for(int i = 1; i <= 31; i++) {
+      //    if (range2 < (Math.pow(2, i))) {
+      //      topDifference = Math.pow(2, i-1);
+      //      break;
+      //    }
+      //  }
+      //section where I need to count how many ways to have one 1, two ones, etc and multiply
       //  for(int i = 1; i <= 31; i++)
       //    runningTotal = runningTotal +  
-      }
+      //}
 
+      // Here we are calculating sums from -x to x-1, because these can be paired, and each pair sums to 32.
       if ((range1<0) && (range2>=0) && (Math.abs(range1)>=Math.abs(range2+1))) {
         runningTotal = runningTotal + (32 * (range2+1));
         tricky1 = range1;
